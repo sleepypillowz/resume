@@ -8,16 +8,13 @@ import { GridList, HorizontalList, VerticalList } from '@/components/list';
 import Separator from '@/components/separator.astro';
 import type { TemplateSection } from '@/types/templates';
 import { pickSectionProps } from '@/utils/templates';
-import Achievement from '@/web/components/achievement.astro';
 import { Basics } from '@/web/components/basics';
 import Education from '@/web/components/education.astro';
 import Favorite from '@/web/components/favorite.astro';
 import Interest from '@/web/components/interest.astro';
-import Job from '@/web/components/job.astro';
 import Layout from '@/web/components/layout.astro';
 import { Metadata } from '@/web/components/metadata';
 import Project from '@/web/components/project.astro';
-import Reference from '@/web/components/reference.astro';
 import { Section, SectionTitle, Subsection, SubsectionTitle } from '@/web/components/section';
 import { Sidebar, SidebarItem } from '@/web/components/sidebar';
 import { Skill } from '@/web/components/skills';
@@ -85,17 +82,6 @@ await initializeWebContext(Astro, {
       <Section class="gap-8" id={section.collection}>
         <SectionTitle>{section.title}</SectionTitle>
 
-        {section.collection === 'achievements' && (
-          <VerticalList class="gap-8">
-            {section.entries.map((entry, i, arr) => (
-              <Fragment>
-                <Achievement entry={getEntry('achievements', entry)} {...pickSectionProps(section)} />
-                {i < arr.length - 1 && <Separator />}
-              </Fragment>
-            ))}
-          </VerticalList>
-        )}
-
         {section.collection === 'education' && (
           <VerticalList class="gap-10">
             {section.entries.map((entry, i, arr) => (
@@ -137,33 +123,11 @@ await initializeWebContext(Astro, {
           </HorizontalList>
         )}
 
-        {section.collection === 'jobs' && (
-          <VerticalList class="gap-10">
-            {section.entries.map((entry, i, arr) => (
-              <Fragment>
-                <Job entry={getEntry('jobs', entry)} {...pickSectionProps(section)} />
-                {i < arr.length - 1 && <Separator />}
-              </Fragment>
-            ))}
-          </VerticalList>
-        )}
-
         {section.collection === 'projects' && (
           <VerticalList class="gap-10">
             {section.entries.map((entry, i, arr) => (
               <Fragment>
                 <Project entry={getEntry('projects', entry)} {...pickSectionProps(section)} />
-                {i < arr.length - 1 && <Separator />}
-              </Fragment>
-            ))}
-          </VerticalList>
-        )}
-
-        {section.collection === 'references' && (
-          <VerticalList class="gap-10">
-            {section.entries.map((entry, i, arr) => (
-              <Fragment>
-                <Reference entry={getEntry('references', entry)} {...pickSectionProps(section)} />
                 {i < arr.length - 1 && <Separator />}
               </Fragment>
             ))}
